@@ -384,7 +384,7 @@ $.extend($.moogle.contextmenu, {
 			if ( isLTE110 ) {
 				// jQuery UI Menu 1.10 or before required an `<a>` tag
 				$parentLi.attr("data-command", entry.cmd);
-				$a = $("<a/>", {
+				$a = $(entry.isMenuTitle ? "<span>" : "<a/>", {
 						html: "" + entry.title,
 						href: "#"
 					}).appendTo($parentLi);
@@ -392,6 +392,10 @@ $.extend($.moogle.contextmenu, {
 				if ( entry.uiIcon ) {
 					$a.append($("<span class='ui-icon' />").addClass(entry.uiIcon));
 				}
+				if (entry.isMenuTitle) {
++				    $parentLi.addClass("ui-state-disabled").css({ "font-weight": 'bold', "opacity": "1.0", "padding-left": "5px" });
+				}
++			}
 
 			} else {
 				// jQuery UI Menu 1.11+ preferes to avoid `<a>` tags
